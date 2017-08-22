@@ -25,7 +25,6 @@
 
 .main-wrapper {
   max-width: 300px;
-  border-collapse: collapse;
   margin: 20px auto;
 }
 
@@ -33,5 +32,10 @@
     width: 98px;
     float: left;
     height: 100px;
-    border: 1px solid #e7e7e7;
+    box-shadow:
+    2px 0 0 0 #e7e7e7,
+    0 2px 0 0 #e7e7e7,
+    2px 2px 0 0 #e7e7e7,   /* Just to fix the corner */
+    2px 0 0 0 #e7e7e7 inset,
+    0 2px 0 0 #e7e7e7 inset;
   }
