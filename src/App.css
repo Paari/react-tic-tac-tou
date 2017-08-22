@@ -9,7 +9,7 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 75px;
   padding: 20px;
   color: white;
 }
@@ -23,9 +23,15 @@
   to { transform: rotate(360deg); }
 }
 
+.main-wrapper {
+  max-width: 300px;
+  border-collapse: collapse;
+  margin: 20px auto;
+}
 
   .block__item {
-    width: 100px;
+    width: 98px;
+    float: left;
     height: 100px;
     border: 1px solid #e7e7e7;
   }

@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Block from './Block/'
 
-const Wrapper = () => (
-  <div className="main-wrapper">
-    <Block />
-  </div>
-)
+class Wrapper extends Component {
+  constructor() {
+    super();
+    this.state = {
+      activePlayer: 'X',
+    }
+  }
+  render() {
+    return (
+      <div className="main-wrapper">
+      <Block />
+      <Block />
+      <Block />
+      <Block />
+      <Block />
+      <Block />
+      <Block />
+      <Block />
+      <Block />
+      </div>
+    )
+  }
+}
+
 
 export default Wrapper;
