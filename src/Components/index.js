@@ -65,6 +65,22 @@ class Wrapper extends Component {
     }
 
 
+    /* Check if the markers are same in cross
+    check for the even numbers as they only have that possibility
+    move the cursor to the center and check -2 & +2 and -4 & +4, if they are same*/
+    if ((index%2) === 0) {
+      // move to the center
+      let center = 4;
+      const offset = Math.abs(center - index);
+
+      // now check the markers in cross positions
+      if (offset === 2 && boxes[center] === boxes[center - 2] && boxes[center] === boxes[center + 2]) {
+        return true;
+      } else if (offset === 4 && boxes[center] === boxes[center - 4] && boxes[center] === boxes[center + 4]) {
+        return true;
+      }
+    }
+
     return false;
   }
 
