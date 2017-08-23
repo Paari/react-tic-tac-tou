@@ -16,20 +16,55 @@ class Wrapper extends Component {
   checkResult (index) {
     const boxes = this.state.boxes;
 
+    /* To check if the markers mastch vertically
+    * assign the index to a variable
+    * check the markers row position and move the index to top row
+    * check from the top row if vertical column has the same value */
+    let ver = index;
+
     // if it's the second row move the check to line one
-    if (index > 2 && index < 6) {
-      index -= 3;
+    if (ver > 2 && ver < 6) {
+      ver -= 3;
     }
 
     // similarly if it is line third line
-    if (index > 5) {
-      index -= 6;
+    if (ver > 5) {
+      ver -= 6;
     }
 
     // now check if vertical markers are same
-    if (boxes[index] === boxes[index + 3] && boxes[index + 3] === boxes[index + 6]) {
+    if (boxes[ver] === boxes[ver + 3] && boxes[ver + 3] === boxes[ver + 6]) {
       return true;
     }
+
+
+    /* Check if the markers match horizontally
+    assign the index to a variable
+    check the row of the marker and move it to the first position of the row
+    now check if all the elements in the row has the same value */
+    let hor = index;
+
+    // if it's the first row
+    if (hor >= 0 && hor < 3) {
+      hor = 0;
+    }
+
+    // if it's the second row
+    if (hor >= 3 && hor < 6) {
+      hor = 3;
+    }
+
+    // if it's the third row
+    if (hor >= 6 && hor < 9) {
+      hor = 6;
+    }
+
+    // now check if the markers in the row are same horizontally
+    if (boxes[hor] === boxes[hor + 1] && boxes[hor + 1] === boxes[hor + 2]) {
+      return true;
+    }
+
+
     return false;
   }
 
