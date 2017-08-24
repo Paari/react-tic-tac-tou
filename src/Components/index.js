@@ -6,7 +6,8 @@ class Wrapper extends Component {
     super();
     this.state = {
       activePlayer: 'X',
-      boxes: ['','','','','','','','','']
+      boxes: ['','','','','','','','',''],
+      result: []
     }
 
     this.updateTheBox = this.updateTheBox.bind(this);
@@ -34,6 +35,12 @@ class Wrapper extends Component {
 
     // now check if vertical markers are same
     if (boxes[ver] === boxes[ver + 3] && boxes[ver + 3] === boxes[ver + 6]) {
+      // set the values in the result array
+      let winningMarkers = [ver, ver + 3, ver + 6];
+      this.setState({
+        result: winningMarkers,
+      });
+
       return true;
     }
 
@@ -61,6 +68,12 @@ class Wrapper extends Component {
 
     // now check if the markers in the row are same horizontally
     if (boxes[hor] === boxes[hor + 1] && boxes[hor + 1] === boxes[hor + 2]) {
+      // set the values in the result array
+      let winningMarkers = [hor, hor + 1, hor + 2];
+      this.setState({
+        result: winningMarkers,
+      });
+
       return true;
     }
 
@@ -75,8 +88,18 @@ class Wrapper extends Component {
 
       // now check the markers in cross positions
       if (offset === 2 && boxes[center] === boxes[center - 2] && boxes[center] === boxes[center + 2]) {
+        // set the values in the result array
+        let winningMarkers = [center, center + 2, center - 2];
+        this.setState({
+          result: winningMarkers,
+        });
         return true;
       } else if (offset === 4 && boxes[center] === boxes[center - 4] && boxes[center] === boxes[center + 4]) {
+        // set the values in the result array
+        let winningMarkers = [center, center + 4, center - 4];
+        this.setState({
+          result: winningMarkers,
+        });
         return true;
       }
     }
@@ -109,8 +132,16 @@ class Wrapper extends Component {
     return (
       <div className="main-wrapper">
         {this.state.boxes.map((marker, index) => {
+          let activeClass = '';
+          console.log(this.state.result);
+          // update the value if it is winning sequence
+          if (this.state.result.includes(index)) {
+            activeClass = 'active';
+          }
+
           return (
             <Block
+            className={activeClass}
             key={index}
             index={index}
             mark={marker}

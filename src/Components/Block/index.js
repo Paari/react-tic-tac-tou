@@ -20,10 +20,12 @@ class Block extends Component {
   }
 
   render() {
+    const {className, mark} = this.props;
+    const activeClass = `block__item ${className}`;
     return (
-      <div onClick={this.markTheBox} className="block__item">
+      <div onClick={this.markTheBox} className={activeClass}>
         <span className="block__item--mark">
-          {this.props.mark}
+          {mark}
         </span>
       </div>
     )
