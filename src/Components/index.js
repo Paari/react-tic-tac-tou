@@ -131,7 +131,13 @@ class Wrapper extends Component {
     // update the value with active player
     let updatedBox = this.state.boxes;
     updatedBox[index] = this.state.activePlayer;
-    console.log(this.checkResult(index));
+    const result = this.checkResult(index);
+
+    // if the result is true, that means game is over, so stop the game
+    if (result) {
+      return false;
+    }
+    
     // flip the marker of the player 0 to X or X to 0
     let activeMarker = '0'
     if (this.state.activePlayer === activeMarker) {
