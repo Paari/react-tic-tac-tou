@@ -41,6 +41,8 @@
   }
 
   .block__item.active {
+    position: relative;
+    z-index: 3px;
     background-color: #32d966;
     color: #ffffff;
     box-shadow: 0 0 50px #32d966;

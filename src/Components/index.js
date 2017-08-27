@@ -7,10 +7,18 @@ class Wrapper extends Component {
     this.state = {
       activePlayer: 'X',
       boxes: ['','','','','','','','',''],
-      result: []
+      result: [],
+      gameOver: false,
     }
 
     this.updateTheBox = this.updateTheBox.bind(this);
+  }
+
+  // when the game is over udpate the state
+  gameOver() {
+    this.setState({
+      gameOver: true,
+    })
   }
 
   // main game logic
@@ -41,6 +49,8 @@ class Wrapper extends Component {
         result: winningMarkers,
       });
 
+      // mark game as over
+      this.gameOver();
       return true;
     }
 
@@ -74,6 +84,8 @@ class Wrapper extends Component {
         result: winningMarkers,
       });
 
+      // mark game as over
+      this.gameOver();
       return true;
     }
 
@@ -93,6 +105,9 @@ class Wrapper extends Component {
         this.setState({
           result: winningMarkers,
         });
+
+        // mark game as over
+        this.gameOver();
         return true;
       } else if (offset === 4 && boxes[center] === boxes[center - 4] && boxes[center] === boxes[center + 4]) {
         // set the values in the result array
@@ -100,6 +115,9 @@ class Wrapper extends Component {
         this.setState({
           result: winningMarkers,
         });
+
+        // mark game as over
+        this.gameOver();
         return true;
       }
     }
@@ -109,7 +127,7 @@ class Wrapper extends Component {
 
   // update the box on click based on the index
   updateTheBox (index, marker) {
-    if (marker !== '') return false;
+    if (marker !== '' || this.state.gameOver) return false;
     // update the value with active player
     let updatedBox = this.state.boxes;
     updatedBox[index] = this.state.activePlayer;
@@ -127,13 +145,25 @@ class Wrapper extends Component {
     })
   }
 
+  renderGameOver() {
+    if (this.state.gameOver) {
+      return(
+        <div className="game-over">
+          <h4>Game Over</h4>
+          <p><strong>{this.state.activePlayer}</strong> won the game</p>
+        </div>
+      )
+    }
+  }
+
 
   render() {
     return (
       <div className="main-wrapper">
+        {this.renderGameOver()}
+
         {this.state.boxes.map((marker, index) => {
           let activeClass = '';
-          console.log(this.state.result);
           // update the value if it is winning sequence
           if (this.state.result.includes(index)) {
             activeClass = 'active';
