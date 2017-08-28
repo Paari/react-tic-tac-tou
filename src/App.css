@@ -54,3 +54,28 @@
   font-size: 45px;
   font-weight: 300;
 }
+
+.game-over {
+  padding: 20px;
+  background-color: #efefef;
+  font-size: 25px;
+  font-weight: 300;
+}
+
+  .game-over--restart {
+    display: inline-block;
+    padding: 8px 25px;
+    background: #32d966;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: none;
+    transition: .3s ease-in-out;
+  }
+
+    .game-over--restart:hover {
+      box-shadow: 0 4px 20px #32d966;
+    }

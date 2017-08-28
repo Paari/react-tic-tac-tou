@@ -11,7 +11,9 @@ class Wrapper extends Component {
       gameOver: false,
     }
 
+    // BIND CLICK FUNCTIONS WITH THIS
     this.updateTheBox = this.updateTheBox.bind(this);
+    this.restartTheGame = this.restartTheGame.bind(this);
   }
 
   // when the game is over udpate the state
@@ -125,7 +127,7 @@ class Wrapper extends Component {
     return false;
   }
 
-  // update the box on click based on the index
+  // UPDATE THE BOX ON CLICK BASED ON THE INDEX
   updateTheBox (index, marker) {
     if (marker !== '' || this.state.gameOver) return false;
     // update the value with active player
@@ -137,7 +139,7 @@ class Wrapper extends Component {
     if (result) {
       return false;
     }
-    
+
     // flip the marker of the player 0 to X or X to 0
     let activeMarker = '0'
     if (this.state.activePlayer === activeMarker) {
@@ -151,12 +153,23 @@ class Wrapper extends Component {
     })
   }
 
+  // RESTART THE GAME
+  restartTheGame() {
+    this.setState({
+      activePlayer: 'X',
+      boxes: ['','','','','','','','',''],
+      result: [],
+      gameOver: false,
+    })
+  }
+
   renderGameOver() {
     if (this.state.gameOver) {
       return(
         <div className="game-over">
           <h4>Game Over</h4>
           <p><strong>{this.state.activePlayer}</strong> won the game</p>
+          <a className="game-over--restart" onClick={this.restartTheGame}>RESTART</a>
         </div>
       )
     }
